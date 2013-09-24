@@ -1,6 +1,13 @@
 """Solution to an exercise in Think Python.
 
-Author:
+Author: Joshua Langowitz
+Exercise 3.5
+Creates any size n by m grid out of ASCII characters
 """
-
-print '+ - - - -'
+def rByCGrid(r,c):
+	divLine = '+ - - - - '*c + '+\n'
+	midLine = '|         '*c + '|\n'
+	grid = (divLine+midLine*4)*r+divLine
+	return grid
+	
+print rByCGrid(6,7)
