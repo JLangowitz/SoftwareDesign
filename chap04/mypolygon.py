@@ -34,7 +34,7 @@ def polygon(t,n):
 
 def circle(t,r):
 	'''
-	Draws a hectohedron approximation of a circle with radius r
+	Draws a hectagon approximation of a circle with radius r
 
 	t: turtle object to move
 	r: radius of circle
@@ -45,7 +45,7 @@ def circle(t,r):
 
 def arc(t,r,angle):
 	'''
-	Draws an arc of angle of the hectohedron approximation 
+	Draws an arc of angle of the hectagon approximation 
 	of a circle with radius r
 
 	t: turtle object to move
