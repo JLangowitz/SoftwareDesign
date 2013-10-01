@@ -7,10 +7,6 @@ HW 3 TurtleWorld Exercises
 from swampy.TurtleWorld import *
 from math import pi
 
-world = TurtleWorld()
-bob = Turtle()
-bob.delay=.01
-print bob
 
 def square(t):
 	'''
@@ -45,20 +41,26 @@ def circle(t,r):
 
 def arc(t,r,angle):
 	'''
-	Draws an arc of angle of the hectagon approximation 
+	Draws an arc of angle of the kilogon approximation 
 	of a circle with radius r
 
 	t: turtle object to move
 	r: radius of circle
 	angle: angle of arc to move
 	'''
-	for i in xrange(int(100*angle/360.0)):
-		fd(t,2*pi*r/100)
-		lt(t,3.6)
+	# lt(t,.18)
+	for i in xrange(int(1000*angle/360.0)):
+		fd(t,2*pi*r/1000)
+		lt(t,.36)
+		
+if __name__ == '__main__':
+	# square(bob)
+	# polygon(bob,6)
+	# circle(bob,50)
+	world = TurtleWorld()
+	bob = Turtle()
+	bob.delay=.01
+	print bob
+	arc(bob,50,360)
 
-# square(bob)
-# polygon(bob,6)
-# circle(bob,50)
-arc(bob,50,360)
-
-wait_for_user()
+	wait_for_user()
