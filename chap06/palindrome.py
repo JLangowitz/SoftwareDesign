@@ -1,6 +1,6 @@
 """Module that provides is_palindrome.
 
-Author of is_palindrome: you
+Author of is_palindrome: Josh Langowitz
 """
 
 def first(word):
@@ -14,7 +14,7 @@ def first(word):
 
 
 def last(word):
-    """Returns the first character of a word.
+    """Returns the last character of a word.
 
     word: string
 
@@ -34,7 +34,17 @@ def middle(word):
 
 
 def is_palindrome(word):
-    """Write a good Docstring here."""
+    """Checks if word is a is_palindrome
+    Makes sure first and last letters are the same, then removes them and 
+    checks again until the word has no more pairs of letters left to check
+     
+    word: string
 
-    # TODO: fill in the body of this function
-    return True
+    returns: True if string is a palindrome, else False
+    """
+    if first(word) != last(word):
+        return False
+    elif len(word)<4:
+        return True
+    else:
+        return is_palindrome(middle(word))
