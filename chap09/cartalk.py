@@ -157,5 +157,6 @@ def interleave(s1,s2):
             s2i+=1
         else:
             print "something went wrong"
+            
 if __name__ == '__main__':
     main()

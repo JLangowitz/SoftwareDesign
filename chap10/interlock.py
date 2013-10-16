@@ -7,21 +7,29 @@ Author:Josh Langowitz
 from bisect import *
 
 def main():
-    findInterlocks()
+    findInterlocks(5)
 
-def findInterlocks():
+
+def findInterlocks(n):
     """
     Finds and prints all sets of words that are interlocks
     """
     wordList=makeWordList()
     for word in wordList:
-        words=splitWord(word)
-        if isInterlock(word,wordList):
-            print "%s and %s interlock to form %s" %(words[0],words[1],word)
+        words=splitWord(word,n)
+        if isInterlock(word,wordList,n):
+            line=''
+            for s in words:
+                line+= s +' and '
+            line= line[:-5]+ ' interlock to form %s' %word
+            print line
 
-def isInterlock(word,wordList):
-    words=splitWord(word)
-    return isInList(words[0],wordList) and isInList(words[1],wordList)
+def isInterlock(word,wordList,n):
+    words=splitWord(word,n)
+    for word in words:
+        if not isInList(word,wordList):
+            return False
+    return True
 
 def isInList(word,wordList):
     """
@@ -43,16 +51,17 @@ def makeWordList():
         wordList.append(line.strip())
     return wordList
 
-def splitWord(word):
-    wordsOut=['','']
+def splitWord(word,n):
+    wordsOut=['']*n
     index=0
     for char in word:
         wordsOut[index]+=char
-        index=1-index
+        index=(index+1)%n
     return wordsOut
 
 if __name__ == '__main__':
     main()
+
 def makeWordList():
     """
     turns a text file into an array of words
