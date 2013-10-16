@@ -25,6 +25,13 @@ def findInterlocks(n):
             print line
 
 def isInterlock(word,wordList,n):
+    """
+    Checks if word can be made of n interleaving words
+
+    word: string
+    wordList: list of words that are legal
+    n: integer
+    """
     words=splitWord(word,n)
     for word in words:
         if not isInList(word,wordList):
@@ -52,6 +59,12 @@ def makeWordList():
     return wordList
 
 def splitWord(word,n):
+    """
+    returns a list of n strings that interleave into word
+
+    word: string
+    n:integer
+    """
     wordsOut=['']*n
     index=0
     for char in word:

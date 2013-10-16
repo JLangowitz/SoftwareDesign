@@ -1,8 +1,8 @@
 from bisect import *
 
 def main():
-    # findReversePairFast()
-    print splitWord('ballooned')
+    findReversePairFast()
+    # print splitWord('ballooned')
 
 def isInList(word,wordList):
     index=bisect_left(wordList,word)

@@ -2,19 +2,13 @@ from bisect import *
 
 def main():
     findReversePairFast()
-    # print splitWord('ballooned')
 
 def isInList(word,wordList):
+    """
+    Binary search for word in sorted list
+    """
     index=bisect_left(wordList,word)
     return index<len(wordList) and wordList[index]==word
-
-def splitWord(word):
-    wordsOut=['','']
-    index=0
-    for char in word:
-        wordsOut[index]+=char
-        index=1-index
-    return wordsOut
 
 def makeWordList():
     """
@@ -106,25 +100,6 @@ def is_palindrome(word):
         return True
     else:
         return is_palindrome(middle(word))
-
-def interleave(s1,s2):
-    snew=''
-    s1i=0
-    s2i=0
-    l1=len(s1)
-    l2=len(s2)
-    tot=l1+l2
-    ratio=float(l1)/tot
-    for i in xrange(1,tot+1):
-        s1buffer=i*ratio-s1i-.5
-        if s1buffer>0 and s1i<l1:
-            snew+=s1[s1i]
-            s1i+=1
-        elif s2i<l2:
-            snew+=s2[s2i]
-            s2i+=1
-        else:
-            print "something went wrong"
 
 if __name__ == '__main__':
     main()
