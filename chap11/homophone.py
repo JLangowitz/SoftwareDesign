@@ -7,12 +7,9 @@ def main():
     wordDict=pronounce.read_dictionary()
     works=[]
     for word in wordList:
-        try:
-            t=(word,word[1:],word[0]+word[2:])
-            if areHomophones(wordDict,t):
-                works.append(word)
-        except IndexError:
-            pass
+        t=(word,word[1:],word[0]+word[2:])
+        if areHomophones(wordDict,t):
+            works.append(word)
     for answer in works:
         print '%s is a solution' %answer
     # for word in wordList:
@@ -28,7 +25,6 @@ def areHomophones(wordDict,t):
     t: list of strings
     """
     return all([word in wordDict for word in t]) and len(set([wordDict[word] for word in t]))==1
-
 def findRotatePairs(word,wordList):
     """
     Finds all rotate pairs of word in wordlist and returns a list of tuples
