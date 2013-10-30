@@ -9,6 +9,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 
 import string
 import random
+import bisect
 
 
 def process_file(filename, skip_header=True):
@@ -69,7 +70,9 @@ def most_common(hist):
     returns: list of (word, frequency) pairs, sorted by frequency
     """
     t = []
-    # TODO: fix this
+    for key, value in hist.items():
+        t.append((value,key))
+    t.sort(reverse=True)
     return t
 
 
@@ -93,7 +96,9 @@ def subtract(d1, d2):
     returns: new dictionary
     """
     res = {}
-    # TODO: fill this is
+    for key in d1:
+        if key not in d2:
+            res[key]=d1[key]
     return res
 
 
@@ -107,14 +112,30 @@ def different_words(hist):
     return len(hist)
 
 
-def random_word(hist):
+def random_word(words, freqList):
     """Chooses a random word from a histogram.
 
     The probability of each word is proportional to its frequency.
     """
-    # TODO: fix this
-    return 'random word'
+    choice=random.randint(1,freqList[-1])
+    index=bisect.bisect_left(freqList,choice)
+    return words[index]
+    
 
+def cum_freq(hist, words):
+    """
+    Makes a list of cumulative frequencies of the words in the dictionary
+
+    words: list of the dictionary keys, to keep them from being in some weird order
+    from hash strangeness
+    hist: dictionary of words to frequencies
+    """
+    res=[]
+    count=0
+    for word in words:
+        count+=hist[word]
+        res.append(count)
+    return res
 
 if __name__ == '__main__':
     hist = process_file('emma.txt', skip_header=True)
@@ -133,7 +154,9 @@ if __name__ == '__main__':
     for word in diff.keys():
         print word,
 
+    wordList=hist.keys()
+    freqList=cum_freq(hist, wordList)
     print "\n\nHere are some random words from the book"
     for i in range(100):
-        print random_word(hist),
+        print random_word(wordList,freqList),
 

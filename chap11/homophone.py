@@ -24,7 +24,8 @@ def areHomophones(wordDict,t):
     wordDict: phonetic dictionary
     t: list of strings
     """
-    return all([word in wordDict for word in t]) and len(set([wordDict[word] for word in t]))==1
+    return all([word in wordDict for word in t]) and len(set([wordDict[word] for word in t]))==1 
+    #makes sure all words are keys in the dictionary and then checks to see that they all have the same value in the dictionary
 def findRotatePairs(word,wordList):
     """
     Finds all rotate pairs of word in wordlist and returns a list of tuples

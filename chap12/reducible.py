@@ -5,6 +5,8 @@ def main():
             answers.append((len(word),word))
     answers.sort()
     print answers[-1][1]
+    for _,answer in answers:
+        print answer
 
 def isReducible(s,wordSet):
     """
@@ -15,13 +17,10 @@ def isReducible(s,wordSet):
     """
     if s in memo:
         return memo[s]
-    if s=='':
-        memo[s]=True
-        return True
     if s not in wordSet:
         memo[s]=False
         return False
-    for subS in [restOf(s,n) for n in xrange(len(s))]:
+    for subS in [restOf(s,n) for n in xrange(len(s))]: #list of substrings of s
         if isReducible(subS, wordSet):
             memo[s]=True
             return True
@@ -53,5 +52,5 @@ if __name__ == '__main__':
     wordSet=makeWordSet()
     wordSet.add('a')
     wordSet.add('i')
-    memo={}
+    memo={'':True}
     main()
